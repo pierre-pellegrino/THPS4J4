@@ -15,6 +15,7 @@ class Game
     puts ""
     print "> "
     player1_name = gets.chomp
+    player1_name == "moussaillon" ? player1_name = player1_name.magenta : nil
     puts ""
     puts "Choisissez un nom pour le deuxième joueur, qui jouera avec les #{"O".blue} :"
     puts ""
