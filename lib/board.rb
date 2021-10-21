@@ -12,27 +12,30 @@ class Board
   end
   
   def show
-    puts " "*8 + " "*9 + "|" + " "*9 + "|" + " "*9
+    puts (" "*40 + " "*9 + "|" + " "*9 + "|" + " "*9)
 
-    puts " "*8 + " "*3 + show_case(cases_array[0][0]) + " "*3 + "|" + " "*3 + show_case(cases_array[0][1]) + " "*3 + "|" +  " "*3 +show_case(cases_array[0][2]) + " "*3
+    puts (" "*40 + " "*3 + show_case(cases_array[0][0]) + " "*3 + "|" + " "*3 + show_case(cases_array[0][1]) + " "*3 + "|" +  " "*3 +show_case(cases_array[0][2]) + " "*3)
 
-    puts " "*8 + " "*9 + "|" + " "*9 + "|" + " "*9
+    puts (" "*40 + " "*9 + "|" + " "*9 + "|" + " "*9)
 
-    puts " "*8 + "-"*9 + "|" + "-"*9 + "|" + "-"*9 #Barre
+    puts (" "*40 + "-"*9 + "|" + "-"*9 + "|" + "-"*9) #Barre
 
-    puts " "*8 + " "*9 + "|" + " "*9 + "|" + " "*9
+    puts (" "*40 + " "*9 + "|" + " "*9 + "|" + " "*9)
 
-    puts " "*8 + " "*3 + show_case(cases_array[1][0]) + " "*3 + "|" + " "*3 + show_case(cases_array[1][1]) + " "*3 + "|" +  " "*3 + show_case(cases_array[1][2]) + " "*3
+    puts (" "*40 + " "*3 + show_case(cases_array[1][0]) + " "*3 + "|" + " "*3 + show_case(cases_array[1][1]) + " "*3 + "|" +  " "*3 + show_case(cases_array[1][2]) + " "*3)
 
-    puts " "*8 + " "*9 + "|" + " "*9 + "|" + " "*9
+    puts (" "*40 + " "*9 + "|" + " "*9 + "|" + " "*9)
 
-    puts " "*8 + "-"*9 + "|" + "-"*9 + "|" + "-"*9 #Barre
+    puts (" "*40 + "-"*9 + "|" + "-"*9 + "|" + "-"*9) #Barre
 
-    puts " "*8 + " "*9 + "|" + " "*9 + "|" + " "*9
+    puts (" "*40 + " "*9 + "|" + " "*9 + "|" + " "*9)
 
-    puts " "*8 + " "*3 + show_case(cases_array[2][0]) + " "*3 + "|" + " "*3 + show_case(cases_array[2][1]) + " "*3 + "|" +  " "*3 + show_case(cases_array[2][2]) + " "*3
+    puts (" "*40 + " "*3 + show_case(cases_array[2][0]) + " "*3 + "|" + " "*3 + show_case(cases_array[2][1]) + " "*3 + "|" +  " "*3 + show_case(cases_array[2][2]) + " "*3)
 
-    puts " "*8 + " "*9 + "|" + " "*9 + "|" + " "*9
+    puts (" "*40 + " "*9 + "|" + " "*9 + "|" + " "*9)
+
+    puts ""
+    puts ""
 
   end
 

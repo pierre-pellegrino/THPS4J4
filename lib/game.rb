@@ -31,28 +31,74 @@ class Game
     return turn
   end
 
+
   def player_move # Demande au joueur sur quelle case il veut jouer son coup
     turn = self.turn_to_play
     puts "C'est à #{players[turn].name} de jouer. Placez un #{players[turn].symbol} sur la case de votre choix : "
-    puts "Ex : Pour la case A 1, saisissez A1"
+    puts "(Ex : Pour la case A 1, saisissez A1)"
+    puts ""
+    print "> "
 
     # Récupère le choix de la case et le convertit en index de tableau (ex: a1 -> 00 -> [0][0], b3 -> 12 etc...)
     chosen_case = gets.chomp.downcase.gsub(/[abc123]/, 'a'=>'0', 'b'=>1, 'c'=>2, '1'=>0, '2'=>1, '3'=>2)
     chosen_case = [chosen_case[0].to_i, chosen_case[1].to_i]
+    chosen_case[0]>2 ? chosen_case[0] = 0 : nil
+    chosen_case[1]>2 ? chosen_case[1] = 0 : nil
 
     # Vérifie si la case est vide, ajoute le coup du joueur si oui ou demande au joueur de choisir une autre case sinon
-    # while (chosen_case[1]<0 || chosen_case[1]>2)
-    #   puts "Merci de choisir une case valide"
-    #   chosen_case = gets.chomp.downcase.gsub(/[abc123]/, 'a'=>'0', 'b'=>1, 'c'=>2, '1'=>0, '2'=>1, '3'=>2)
-    #   chosen_case = [chosen_case[0].to_i, chosen_case[1].to_i]
-    # end
     while !board.is_case_empty?(chosen_case)
-      puts "Merci de choisir une case vide."
+      puts "Merci de choisir une case valide."
+      puts ""
+      print "> "
       chosen_case = gets.chomp.downcase.gsub(/[abc123]/, 'a'=>'0', 'b'=>1, 'c'=>2, '1'=>0, '2'=>1, '3'=>2)
       chosen_case = [chosen_case[0].to_i, chosen_case[1].to_i]
+      chosen_case[0]>2 ? chosen_case[0] = 0 : nil
+      chosen_case[1]>2 ? chosen_case[1] = 0 : nil
     end
       board.cases_array[chosen_case[0]][chosen_case[1]].content = " #{players[turn].symbol} "
       board.turns_played += 1
+  end
+
+
+  def game_over? # Vérifie si un joueur gagne la partie
+    result = false
+    # Ces lignes de code contrôlent les colonnes, lignes et diagonales
+    board.cases_array[0][0].content != " " && board.cases_array[0][0].content == board.cases_array[0][1].content && board.cases_array[0][1].content == board.cases_array[0][2].content ? result = true : nil
+    board.cases_array[1][0].content != " " && board.cases_array[1][0].content == board.cases_array[1][1].content && board.cases_array[1][1].content == board.cases_array[1][2].content ? result = true : nil
+    board.cases_array[2][0].content != " " && board.cases_array[2][0].content == board.cases_array[2][1].content && board.cases_array[2][1].content == board.cases_array[2][2].content ? result = true : nil
+
+    board.cases_array[0][0].content != " " && board.cases_array[0][0].content == board.cases_array[1][0].content && board.cases_array[1][0].content == board.cases_array[2][0].content ? result = true : nil
+    board.cases_array[0][1].content != " " && board.cases_array[0][1].content == board.cases_array[1][1].content && board.cases_array[1][1].content == board.cases_array[2][1].content ? result = true : nil
+    board.cases_array[0][2].content != " " && board.cases_array[0][2].content == board.cases_array[1][2].content && board.cases_array[1][2].content == board.cases_array[2][2].content ? result = true : nil
+
+    board.cases_array[0][0].content != " " && board.cases_array[0][0].content == board.cases_array[1][1].content && board.cases_array[1][1].content == board.cases_array[2][2].content ? result = true : nil
+    board.cases_array[2][0].content != " " && board.cases_array[2][0].content == board.cases_array[1][1].content && board.cases_array[1][1].content == board.cases_array[0][2].content ? result = true : nil
+
+    return result
+  end
+
+
+  def show_winner # Affiche le résultat de la partie
+    puts ""
+    puts "Félicitations, c'est #{players[(@player_move+1)%2].name} qui gagne avec les #{players[(@player_move+1)%2].symbol} !"
+    puts ""
+  end
+
+  def play_again # Propose de rejouer
+    
+  end
+
+
+  def game_title # Affiche l'en-tête du jeu
+    system("clear")
+    puts " _______ _____ _____   _______       _____   _______ ____  ______ ".gray.center(120)
+    puts "|__   __|_   _/ ____| |__   __|/\\   / ____| |__   __/ __ \\|  ____|".gray.center(120)
+    puts "   | |    | || |         | |  /  \\ | |         | | | |  | | |__   ".gray.center(120)
+    puts "   | |    | || |         | | / /\\ \\| |         | | | |  | |  __|  ".gray.center(120)
+    puts "   | |   _| || |____     | |/ ____ \\ |____     | | | |__| | |____ ".gray.center(120)
+    puts "   |_|  |_____\\_____|    |_/_/    \\_\\_____|    |_|  \\____/|______| ".gray.center(120)
+    puts ""
+    puts ""
   end
 
 
