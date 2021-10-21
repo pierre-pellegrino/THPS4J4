@@ -18,25 +18,11 @@ puts "   |_|  |_____\\_____|    |_/_/    \\_\\_____|    |_|  \\____/|______| ".g
 puts ""
 puts ""
 
+while true
 # Instancie le plateau
 game = Game.new
 
-# Instancie les joueurs
-game.get_players_names
-
-# Jeu
-while game.board.turns_played < 9
-    game.game_title
-    game.board.show
-    game.player_move
-    game.game_over? ? break : nil
-  end
-  if game.board.turns_played <9
-    game.game_title
-    game.show_winner
-    gets.chomp
-  else
-    game.game_title
-    puts "ÉGALITAY"
-  end
-  
+# Lance la partie
+game.perform
+game.play_again == 1 ? break : nil
+end

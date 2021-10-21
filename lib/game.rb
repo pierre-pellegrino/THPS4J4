@@ -1,10 +1,12 @@
 # Initialise une partie, contrôle son état
 class Game
   attr_accessor :players, :board, :player_move
+  @@games_played = 0
 
   def initialize
      @board = Board.new
      @player_move = 0
+     @@games_played += 1
   end
 
 
@@ -84,8 +86,41 @@ class Game
     puts ""
   end
 
-  def play_again # Propose de rejouer
-    
+  def show_equality # Message en cas d'égalité
+    puts "Égalité !"
+    puts ""
+  end
+
+  def play_again # Propose de rejouer : Si elle retourne 0, on arrête, si elle retourne 1, on rejoue.
+    puts "C'était ta #{@@games_played == 1 ? "1ère" : "#{@@games_played}ème"} partie. On en refait une ?"
+    puts ""
+    puts "0 - Oui"
+    puts "1 - Non"
+    puts ""
+    print "> "
+    return answer = gets.chomp.to_i
+  end
+
+  def perform
+    self.game_title
+    self.get_players_names
+    while self.board.turns_played < 9
+      self.game_title
+      self.board.show
+      self.player_move
+      self.game_over? ? break : nil
+    end
+    if self.board.turns_played <9
+      self.game_title
+      self.board.show
+      self.show_winner
+      gets.chomp
+    else
+      self.game_title
+      self.board.show
+      self.show_equality
+      gets.chomp
+    end
   end
 
 
