@@ -17,8 +17,10 @@ game.get_players_names
 # Affiche le plateau
 game.board.show
 
-# Récupère les coups des joueurs
-game.player_move
-game.board.show
-game.player_move
-game.board.show
+# Jeu
+while game.board.turns_played < 9
+  # Récupère les coups des joueurs
+  game.player_move
+  game.board.show
+end
+puts "ÉGALITAY"
